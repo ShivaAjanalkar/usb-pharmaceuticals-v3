@@ -338,6 +338,21 @@ a:hover { color: var(--navy); }
   color: var(--copper-deep);
 }
 
+/* The small index label above a card heading — V1, Q01, 03. */
+.card__n {
+  display: block;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  color: var(--copper-deep);
+}
+
+/* Segment marks inherit their colour; copper-deep is the readable one on a
+   light ground — plain copper is a fill, not a text weight. */
+.segment-icon { color: var(--copper-deep); }
+
+.pack-diagram { width: 100%; max-width: 360px; height: auto; }
+
 /* — stats ——————————————————————————————————————————————————————————————— */
 
 .stat { text-align: left; }
@@ -371,26 +386,46 @@ a:hover { color: var(--navy); }
   align-items: start;
 }
 .srow:last-child { border-bottom: 1px solid var(--line); }
+.srow__sub {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--copper-deep);
+  margin: 0 0 12px;
+}
 
 /* — accordion ——————————————————————————————————————————————————————————— */
 
+.acc { --acc-num: 44px; --acc-gap: 14px; --acc-pad: clamp(20px, 2.4vw, 32px); }
 .acc__item { background: var(--white); border-radius: var(--r); margin-bottom: 12px; overflow: hidden; }
+/* Three columns, because the row has three children: index, question, toggle.
+   Two columns crushes the question into the toggle's width and wraps the
+   toggle onto its own line. */
 .acc__btn {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 36px;
-  gap: 16px;
+  grid-template-columns: var(--acc-num) minmax(0, 1fr) 36px;
+  gap: var(--acc-gap);
   align-items: center;
   text-align: left;
   background: transparent;
   border: 0;
   cursor: pointer;
-  padding: clamp(20px, 2.2vw, 28px) clamp(20px, 2.4vw, 32px);
+  padding: clamp(18px, 2.2vw, 26px) var(--acc-pad);
   color: var(--ink);
   font-size: clamp(16px, 1.4vw, 19px);
   font-weight: 500;
   line-height: 1.4;
 }
+.acc__n {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--copper-deep);
+  font-weight: 400;
+}
+.acc__q { min-width: 0; }
 .acc__sign {
   width: 34px; height: 34px;
   border-radius: 50%;
@@ -403,9 +438,11 @@ a:hover { color: var(--navy); }
 .acc__panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--dur) var(--ease); }
 .acc__panel[data-open="true"] { grid-template-rows: 1fr; }
 .acc__panel > div { overflow: hidden; }
+/* The answer hangs under the question, not under the index column. */
 .acc__panel p {
   margin: 0;
-  padding: 0 clamp(20px, 2.4vw, 32px) clamp(22px, 2.4vw, 30px);
+  padding: 0 var(--acc-pad) clamp(22px, 2.4vw, 30px)
+    calc(var(--acc-pad) + var(--acc-num) + var(--acc-gap));
   max-width: 76ch;
 }
 
@@ -589,6 +626,8 @@ textarea.control { resize: vertical; min-height: 130px; }
 }
 
 @media (max-width: 720px) {
+  .acc { --acc-num: 30px; --acc-gap: 10px; }
+  .acc__btn { grid-template-columns: var(--acc-num) minmax(0, 1fr) 32px; }
   .grid--2, .grid--3, .grid--4 { grid-template-columns: minmax(0, 1fr); }
   .footer__cols { grid-template-columns: minmax(0, 1fr); }
   .ptable-wrap { display: none; }
