@@ -4,9 +4,10 @@ The photographic v3 website for **USB Lifescience Pvt. Ltd.**, an Indian
 pharmaceutical marketing company. Tagline: **Universal Science for Better Life**.
 This rebrand applies to v3; v1 and v2 are separate sites.
 
-Current site: [GitHub Pages](https://shivaajanalkar.github.io/usb-pharmaceuticals-v3/).
-The hosting URL and repository base path remain unchanged. `usblifescience.com`
-is the confirmed email domain; no website domain cutover is configured.
+Public site: [USB Lifescience](https://usblifescience.com/).
+GitHub Pages serves the site at the domain root. The workflow builds without a
+repository base path and uses the custom domain for canonical URLs, sitemap and
+social images. The repository remains `usb-pharmaceuticals-v3`.
 
 - Office: **+91 99168 62083** ([call](tel:+919916862083)).
 - All general, business, partnership, careers and privacy enquiries:

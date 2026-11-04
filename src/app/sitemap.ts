@@ -1,12 +1,9 @@
 import type { MetadataRoute } from "next";
 import { LEGAL_DOCS } from "@/data/legal";
 import { PRODUCTS } from "@/data/products";
+import { siteUrl } from "@/lib/site-url";
 
 export const dynamic = "force-static";
-
-const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
-).replace(/\/$/, "");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
@@ -21,17 +18,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticPaths.map(([path, priority]) => ({
-      url: `${SITE_URL}${path}`,
+      url: siteUrl(path),
       lastModified: new Date(),
       priority,
     })),
     ...PRODUCTS.map((p) => ({
-      url: `${SITE_URL}/products/${p.slug}/`,
+      url: siteUrl(`/products/${p.slug}/`),
       lastModified: new Date(),
       priority: 0.5,
     })),
     ...LEGAL_DOCS.map((d) => ({
-      url: `${SITE_URL}/legal/${d.slug}/`,
+      url: siteUrl(`/legal/${d.slug}/`),
       lastModified: new Date(),
       priority: 0.3,
     })),

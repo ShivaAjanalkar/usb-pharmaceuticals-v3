@@ -1,7 +1,7 @@
-/** The deployed origin and project path; custom-domain migration is separate. */
+/** Public canonical origin; optional overrides support preview builds. */
 const BASE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://shivaajanalkar.github.io/usb-pharmaceuticals-v3"
+  "https://usblifescience.com"
 ).replace(/\/+$/, "");
 
 export function siteUrl(path = "/"): string {

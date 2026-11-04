@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-// GitHub Pages serves a project site from /<repo>. Set BASE_PATH in CI.
+// The custom domain is served from /. An optional base path supports previews.
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {

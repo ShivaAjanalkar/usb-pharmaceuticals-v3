@@ -24,7 +24,7 @@ const mono = IBM_Plex_Mono({
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://shivaajanalkar.github.io/usb-pharmaceuticals-v3"
+  "https://usblifescience.com"
 ).replace(/\/+$/, "");
 const metadataBase = new URL(`${siteUrl}/`);
 // Resolve against the site URL once so a GitHub Pages project path is preserved.
