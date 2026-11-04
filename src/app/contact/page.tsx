@@ -5,9 +5,9 @@ import Reveal from "@/components/Reveal";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Contact & Business Enquiries",
   description:
-    `Contact ${SITE.shortName} at ${SITE.email} or ${SITE.phone}. The enquiry form opens your email app.`,
+    `Contact ${SITE.shortName} for product, distributor and business enquiries. Email ${SITE.email} or call ${SITE.phone}.`,
 };
 
 const ENQUIRY_CATEGORIES = [

@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About the Company",
   description:
     `Who ${SITE.shortName} is, why it was founded, and exactly what the company does and does not do.`,
 };

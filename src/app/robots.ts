@@ -4,13 +4,12 @@ import { siteUrl } from "@/lib/site-url";
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {
-  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      // Respect the project path while hosting on GitHub Pages.
-      disallow: [`${base}/hcp/`],
+      // The HCP confirmation page has noindex metadata. Crawlers must be able
+      // to read that directive; blocking the URL here would hide it from them.
     },
     sitemap: siteUrl("/sitemap.xml"),
   };

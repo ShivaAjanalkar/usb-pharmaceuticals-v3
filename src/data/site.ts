@@ -5,8 +5,8 @@ export const SITE = {
   shortName: "USB Lifescience",
   tagline: "Universal Science for Better Life",
   description:
-    `${COMPANY_NAME} is an Indian pharmaceutical marketing company. We select, market and supply finished formulations manufactured for us by qualified third-party manufacturing partners.`,
-  /** Confirmed email domain; hosting remains on the current GitHub Pages URL. */
+    `${COMPANY_NAME} markets and supplies pharmaceutical formulations in India through qualified, licensed manufacturing partners.`,
+  /** Confirmed public website and email domain. */
   domain: "usblifescience.com",
   email: "admin@usblifescience.com",
   phone: "+91 99168 62083",

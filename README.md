@@ -41,4 +41,11 @@ processor details; and a confirmed pharmacovigilance reporting contact. Do not
 present the admin inbox as a monitored drug-safety service. The location map
 remains pending the registered address.
 
+SEO basics include descriptive page metadata, canonical URLs, a sitemap,
+Organization and WebSite JSON-LD on the homepage, and visible structured
+breadcrumbs on brand pages. The HCP confirmation and legacy-route pages use
+noindex. Search Console ownership verification and sitemap submission are still
+external setup steps. Product-specific content requires confirmed particulars;
+structured data does not invent offers, reviews, certifications or specifications.
+
 Asset editing details and prompts: [brand-asset-notes](docs/brand-asset-notes.md).

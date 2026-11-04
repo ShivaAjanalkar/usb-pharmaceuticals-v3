@@ -1,12 +1,12 @@
 import { siteUrl } from "@/lib/site-url";
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import PrescribingPanel from "@/components/PrescribingPanel";
 import LegacyCatalogueLink from "@/components/LegacyCatalogueLink";
 import Reveal from "@/components/Reveal";
 import { PRODUCTS, LEGACY_SLUGS, getProduct } from "@/data/products";
 import { SITE } from "@/data/site";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 type Params = { params: Promise<{ slug: string }> };
 export function generateStaticParams() {
@@ -35,7 +35,11 @@ export default async function ProductPage({ params }: Params) {
     <>
       <section className="section" style={{ paddingTop: "clamp(130px, 16vh, 190px)", paddingBottom: 32 }}>
         <Reveal className="shell">
-          <Link href="/products/" className="eyebrow" style={{ textDecoration: "none" }}>Back to catalogue</Link>
+          <Breadcrumbs items={[
+            {name: "Home", path: "/"},
+            {name: "Our brands", path: "/products/"},
+            {name: product.brand, path: `/products/${product.slug}/`},
+          ]} />
           <h1 className="display display--l" style={{ marginTop: 28, overflowWrap: "anywhere" }} data-reveal>{product.brand}</h1>
           <p className="lead" style={{ marginTop: 22 }} data-reveal>Part of the {SITE.shortName} portfolio.</p>
         </Reveal>

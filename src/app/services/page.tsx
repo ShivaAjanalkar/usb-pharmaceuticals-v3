@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import { ATTRIBUTION } from "@/data/site";
+import { PRODUCTS } from "@/data/products";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Pharmaceutical Marketing & Distribution Services",
   description:
-    "What USB does today, what is still in progress, and where a licensed manufacturing partner takes over.",
+    "Explore USB Lifescience's pharmaceutical marketing, portfolio development, manufacturing coordination and distribution services in India.",
 };
 
 const SERVICES = [
   ["Pharmaceutical marketing", "Brand ownership // Channel communication", "Brand ownership, artwork and packaging development, prescriber and channel communication, and field promotion within the limits Indian advertising law sets for prescription products.", "Portfolio in build · no field force appointed yet"],
-  ["Portfolio development", "Molecule selection // Lifecycle", "Molecule and combination selection against therapeutic need and channel demand, dossier review, dosage-form and pack-size decisions, and lifecycle planning across the catalogue.", "Active · twelve combinations selected"],
+  ["Portfolio development", "Molecule selection // Lifecycle", "Molecule and combination selection against therapeutic need and channel demand, dossier review, dosage-form and pack-size decisions, and lifecycle planning across the catalogue.", `${PRODUCTS.length} supported brands · product particulars being confirmed`],
   ["Third-party manufacturing coordination", "Partner qualification // Release", "Identification and qualification of licensed manufacturing partners, specification agreement, production scheduling, and documentation review through to release. USB coordinates manufacturing; USB does not manufacture.", "Partner qualification in progress"],
   ["Distribution and supply", "Stockists // Traceability", "Distributor and stockist appointment, forecast-led replenishment with the manufacturing partner, batch traceability to the point of dispatch, and a defined route for complaints and recall.", "Channel appointments open"],
   ["Business partnerships", "Licensing // Territory", "In-licensing and out-licensing discussions, co-marketing arrangements, and territory agreements. Terms are still being set, which is the useful time to talk.", "Open to enquiry"],

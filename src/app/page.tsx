@@ -1,4 +1,5 @@
 import Image from "next/image";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Accordion from "@/components/Accordion";
 import Counter from "@/components/Counter";
@@ -8,6 +9,22 @@ import VideoFrame from "@/components/VideoFrame";
 import { PRODUCTS } from "@/data/products";
 import { ATTRIBUTION, SITE } from "@/data/site";
 import { asset } from "@/lib/asset";
+import JsonLd from "@/components/JsonLd";
+import { siteUrl } from "@/lib/site-url";
+
+export const metadata: Metadata = {
+  title: { absolute: "USB Lifescience | Pharmaceutical Marketing Company in India" },
+  description: SITE.description,
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    locale: "en_IN",
+    title: "USB Lifescience | Pharmaceutical Marketing Company in India",
+    description: SITE.description,
+    url: siteUrl("/"),
+    images: [{ url: siteUrl("/assets/lifescience-social-1200x630.png"), width: 1200, height: 630, alt: SITE.name }],
+  },
+};
 
 const STRENGTHS = [
   ["Product selection discipline", "Molecules and combinations are chosen against therapeutic need, channel demand and a documented dossier — not against what is cheapest to source."],
@@ -35,6 +52,24 @@ const FAQ = [
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={{
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization", "@id": siteUrl("/#organization"),
+            name: SITE.shortName, legalName: SITE.name,
+            url: siteUrl("/"), description: SITE.description,
+            logo: siteUrl("/assets/lifescience-logo.png"),
+            email: SITE.email, telephone: SITE.phoneHref.replace("tel:", ""),
+          },
+          {
+            "@type": "WebSite", "@id": siteUrl("/#website"),
+            url: siteUrl("/"), name: SITE.shortName,
+            alternateName: SITE.name, inLanguage: "en-IN",
+            publisher: { "@id": siteUrl("/#organization") },
+          },
+        ],
+      }} />
       {/* ── hero ─────────────────────────────────────────────────────────── */}
       <section style={{ paddingTop: "clamp(120px, 15vh, 172px)", paddingBottom: "clamp(40px, 5vw, 72px)" }}>
         <Reveal className="shell">
