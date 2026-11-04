@@ -54,7 +54,7 @@ export default function CareersPage() {
                 {SITE.email} <Arrow />
               </a>
               <p className="data dim" style={{ marginTop: 26, paddingTop: 20, borderTop: "1px solid var(--line)", fontSize: 11, lineHeight: 1.8 }}>
-                Location · registered office address pending confirmation
+                Office location · {SITE.postalAddress.addressLocality}
               </p>
             </div>
           </div>

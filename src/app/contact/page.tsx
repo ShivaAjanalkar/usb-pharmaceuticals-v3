@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import EnquiryForm from "@/components/EnquiryForm";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import { Arrow } from "@/components/SiteNav";
 import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Contact & Business Enquiries",
   description:
-    `Contact ${SITE.shortName} for product, distributor and business enquiries. Email ${SITE.email} or call ${SITE.phone}.`,
+    `Contact ${SITE.shortName} in Mysore for product, distributor and business enquiries. Email ${SITE.email} or call ${SITE.phone}.`,
 };
 
 const ENQUIRY_CATEGORIES = [
@@ -16,6 +17,8 @@ const ENQUIRY_CATEGORIES = [
   ["Partnership", "Manufacturing partners, CDMOs, licensing"],
   ["Careers", "Applications and speculative CVs"],
 ];
+
+const OFFICE_MAP_URL = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(SITE.address.join(", "))}`;
 
 export default function ContactPage() {
   return (
@@ -32,7 +35,7 @@ export default function ContactPage() {
             <div data-reveal>
               <div className="card" style={{ marginBottom: "clamp(14px, 1.6vw, 22px)" }}>
                 <p className="eyebrow" style={{ marginBottom: 22 }}>
-                  Registered office
+                  Office address
                 </p>
                 <p className="data" style={{ margin: 0, fontSize: 14, lineHeight: 2 }}>
                   {SITE.address.map((line) => (
@@ -102,43 +105,19 @@ export default function ContactPage() {
               gap: 20,
               justifyContent: "space-between",
               alignItems: "baseline",
-              marginBottom: 26,
             }}
           >
             <h2 className="display display--m" style={{ margin: 0 }} data-reveal>
-              Location
+              Visit our office
             </h2>
-            <span className="data dim" data-reveal>
-              Google Maps embed pending registered address
-            </span>
-          </div>
-          <div
-            data-reveal
-            style={{
-              borderRadius: "var(--card-lg)",
-              border: "1px dashed var(--line)",
-              aspectRatio: "21 / 7",
-              minHeight: 220,
-              display: "grid",
-              placeItems: "center",
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
-          >
-            <div style={{ display: "grid", gap: 14, justifyItems: "center" }}>
-              <span
-                style={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: "50%",
-                  background: "var(--copper)",
-                  display: "block",
-                }}
-              />
-              <span className="data dim" style={{ letterSpacing: "0.12em", textTransform: "uppercase", fontSize: 11 }}>
-                Google Maps embed · address pending
-              </span>
+            <div data-reveal>
+              <p className="prose" style={{ margin: "0 0 20px" }}>
+                Jayanagar, Mysore - {SITE.postalAddress.postalCode}.<br />
+                Near Ashokapuram Railway Station.
+              </p>
+              <a href={OFFICE_MAP_URL} target="_blank" rel="noopener noreferrer" className="btn btn--navy">
+                Open in Google Maps <Arrow />
+              </a>
             </div>
           </div>
         </Reveal>

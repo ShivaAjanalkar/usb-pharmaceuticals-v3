@@ -15,8 +15,17 @@ export const SITE = {
   cin: "Pending confirmation",
   address: [
     COMPANY_NAME,
-    "Registered office address pending confirmation.",
+    "#87/87, 1st floor, Pampapathi Road",
+    "Near Ashokapuram Railway Station",
+    "Chikkaharadanahalli 2nd Stage, Jayanagar",
+    "Mysore - 570014",
   ],
+  postalAddress: {
+    streetAddress: "#87/87, 1st floor, Pampapathi Road, Near Ashokapuram Railway Station, Chikkaharadanahalli 2nd Stage, Jayanagar",
+    addressLocality: "Mysore",
+    postalCode: "570014",
+    addressCountry: "IN",
+  },
 } as const;
 
 export const NAV = [
@@ -36,7 +45,6 @@ export const FOOTER_COLUMNS = [
     links: [
       { href: "/services/", label: "Services" },
       { href: "/quality/", label: "Quality" },
-      { href: "/contact/", label: "Partnership enquiry" },
     ],
   },
   {

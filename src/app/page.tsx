@@ -61,6 +61,7 @@ export default function HomePage() {
             url: siteUrl("/"), description: SITE.description,
             logo: siteUrl("/assets/lifescience-logo.png"),
             email: SITE.email, telephone: SITE.phoneHref.replace("tel:", ""),
+            address: { "@type": "PostalAddress", ...SITE.postalAddress },
           },
           {
             "@type": "WebSite", "@id": siteUrl("/#website"),

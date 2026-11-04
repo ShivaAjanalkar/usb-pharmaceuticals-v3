@@ -12,7 +12,9 @@ social images. The repository remains `usb-pharmaceuticals-v3`.
 - Office: **+91 99168 62083** ([call](tel:+919916862083)).
 - All general, business, partnership, careers and privacy enquiries:
   **[admin@usblifescience.com](mailto:admin@usblifescience.com)**.
-- Registered office address and CIN: **pending confirmation**.
+- Office address: **#87/87, 1st floor, Pampapathi Road, Near Ashokapuram Railway
+  Station, Chikkaharadanahalli 2nd Stage, Jayanagar, Mysore - 570014**.
+- CIN and whether this is the statutory registered office: **pending confirmation**.
 
 The enquiry form prepares a `mailto:` email and opens the visitor's email app.
 The visitor must review and send it there. There is no backend submission or
@@ -38,8 +40,9 @@ Existing launch gaps still require confirmation: product particulars and artwork
 registered address and CIN; state coverage; licences and certification evidence;
 legal effective date and jurisdiction; privacy retention periods and
 processor details; and a confirmed pharmacovigilance reporting contact. Do not
-present the admin inbox as a monitored drug-safety service. The location map
-remains pending the registered address.
+present the admin inbox as a monitored drug-safety service. The confirmed office
+address appears on the contact page, in the footer and in Organization structured
+data; the contact page links to an address search in Google Maps.
 
 SEO basics include descriptive page metadata, canonical URLs, a sitemap,
 Organization and WebSite JSON-LD on the homepage, and visible structured

@@ -26,6 +26,11 @@ export default function SiteFooter() {
             >
               <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
               <a href={SITE.phoneHref}>Office: {SITE.phone}</a>
+              <span style={{ fontSize: 14, lineHeight: 1.7, color: "rgba(255,255,255,.72)" }}>
+                {SITE.address.slice(1).map((line) => (
+                  <span key={line} style={{ display: "block" }}>{line}</span>
+                ))}
+              </span>
             </address>
           </div>
 
