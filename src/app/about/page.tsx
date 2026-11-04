@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Who USB Pharmaceuticals is, why it was founded, and exactly what the company does and does not do.",
+    `Who ${SITE.shortName} is, why it was founded, and exactly what the company does and does not do.`,
 };
 
 const VALUES = [
@@ -23,16 +24,15 @@ export default function AboutPage() {
       <PageHero
         tag="About USB"
         title="Designed to be checked, not admired"
-        sub="Who USB Pharmaceuticals is, why it was founded, and exactly what the company does and does not do."
+        sub={`Who ${SITE.shortName} is, why it was founded, and exactly what the company does and does not do.`}
       />
 
       <section className="section" style={{ paddingTop: 0 }}>
         <Reveal className="shell">
           <div className="grid grid--2" style={{ gap: "clamp(28px, 4vw, 72px)", alignItems: "start" }}>
             <p className="lead" data-reveal>
-              USB Pharmaceuticals Pvt. Ltd. was incorporated in India as a
-              pharmaceutical marketing company. The name expands to Universal
-              Science for Better Life.
+              {SITE.name} was incorporated in India as a
+              pharmaceutical marketing company. The name expands to {SITE.tagline}.
             </p>
             <div data-reveal>
               <p className="prose">

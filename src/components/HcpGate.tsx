@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { setHcpVerified } from "@/lib/hcp";
 import { asset } from "@/lib/asset";
+import { SITE } from "@/data/site";
 
 /** Only same-origin, in-site paths are accepted as a return destination. */
 function safeReturn(raw: string | null): string {
@@ -40,7 +41,7 @@ export default function HcpGate() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: "clamp(26px, 3vw, 38px)" }}>
           <Image
-            src={asset("/assets/usb-icon-copper.png")}
+            src={asset("/assets/lifescience-emblem-copper.svg")}
             alt=""
             width={48}
             height={48}
@@ -95,7 +96,7 @@ export default function HcpGate() {
           style={{ margin: 0, fontSize: 11, lineHeight: 1.85, borderTop: "1px solid var(--line)", paddingTop: 22, maxWidth: "76ch" }}
         >
           Confirming professional status is a self-declaration and is recorded for
-          this session only. USB Pharmaceuticals Pvt. Ltd. does not use this page
+          this session only. {SITE.name} does not use this page
           to promote prescription medicines to the public. If you are a patient or
           caregiver, speak to your prescriber or pharmacist.
         </p>

@@ -10,16 +10,23 @@ export default function SiteFooter() {
         <div className="footer__cols">
           <div>
             <Image
-              src={asset("/assets/usb-horizontal-white.png")}
+              src={asset("/assets/lifescience-horizontal-white.svg")}
               alt={SITE.name}
               width={260}
-              height={58}
+              height={96}
               style={{ width: "min(100%, 240px)", height: "auto", marginBottom: 22 }}
             />
             <p style={{ margin: 0, fontSize: 15, lineHeight: 1.7, maxWidth: "38ch" }}>
               A pharmaceutical marketing company. Products are manufactured by
               licensed third-party manufacturing partners.
             </p>
+            <address
+              className="footer__links"
+              style={{ marginTop: 20, fontStyle: "normal", overflowWrap: "anywhere" }}
+            >
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+              <a href={SITE.phoneHref}>Office: {SITE.phone}</a>
+            </address>
           </div>
 
           {FOOTER_COLUMNS.map((col) => (

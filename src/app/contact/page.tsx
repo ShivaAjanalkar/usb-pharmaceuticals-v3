@@ -7,14 +7,14 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Four routed inboxes, one enquiry form, a named reply within two working days.",
+    `Contact ${SITE.shortName} at ${SITE.email} or ${SITE.phone}. The enquiry form opens your email app.`,
 };
 
-const ROUTES = [
-  ["General", "info", "Anything that is not covered below"],
-  ["Business", "business", "Distributors, stockists, channel appointment"],
-  ["Partnership", "partners", "Manufacturing partners, CDMOs, licensing"],
-  ["Careers", "careers", "Applications and speculative CVs"],
+const ENQUIRY_CATEGORIES = [
+  ["General", "Anything that is not covered below"],
+  ["Business", "Distributors, stockists, channel appointment"],
+  ["Partnership", "Manufacturing partners, CDMOs, licensing"],
+  ["Careers", "Applications and speculative CVs"],
 ];
 
 export default function ContactPage() {
@@ -22,8 +22,8 @@ export default function ContactPage() {
     <>
       <PageHero
         tag="Contact"
-        title="Four routed inboxes, one form"
-        sub="Send the enquiry to the function that owns it and you will get an answer from a person within two working days."
+        title="One inbox for every enquiry"
+        sub={`General, business, partnership and careers enquiries all go to ${SITE.email}. Use the form to prepare an email in your own email app.`}
       />
 
       <section className="section" style={{ paddingTop: 0 }}>
@@ -47,9 +47,9 @@ export default function ContactPage() {
 
               <div className="card">
                 <p className="eyebrow" style={{ marginBottom: 22 }}>
-                  Routed enquiries
+                  Enquiries
                 </p>
-                {ROUTES.map(([label, box, note]) => (
+                {ENQUIRY_CATEGORIES.map(([label, note]) => (
                   <div
                     key={label}
                     style={{
@@ -69,21 +69,18 @@ export default function ContactPage() {
                       </div>
                     </div>
                     <a
-                      href={`mailto:${box}@${SITE.domain}`}
+                      href={`mailto:${SITE.email}`}
                       className="data"
                       style={{ color: "var(--copper-deep)", textDecoration: "none", whiteSpace: "nowrap" }}
                     >
-                      {box}@{SITE.domain}
+                      {SITE.email}
                     </a>
                   </div>
                 ))}
 
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 10, marginTop: 26 }}>
-                  <a href="tel:+91" className="chip">
+                  <a href={SITE.phoneHref} className="chip">
                     {SITE.phone}
-                  </a>
-                  <a href={SITE.whatsapp} className="chip">
-                    WhatsApp click-to-chat
                   </a>
                 </div>
               </div>

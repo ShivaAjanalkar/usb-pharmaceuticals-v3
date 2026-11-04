@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
+import { SITE } from "@/data/site";
 
 export const metadata: Metadata = {
   title: "Quality",
@@ -128,8 +129,8 @@ export default function QualityPage() {
           <p className="prose" style={{ marginBottom: "clamp(32px, 4vw, 48px)", maxWidth: "70ch" }} data-reveal>
             No certification marks are displayed on this site. Certifications held
             by our manufacturing partners belong to those partners and are not
-            ours to show. Any certification issued to USB Pharmaceuticals Pvt.
-            Ltd. will appear here with its issuing body, scope, certificate number
+            ours to show. Any certification issued to {SITE.name} will appear
+            here with its issuing body, scope, certificate number
             and validity dates — and not before.
           </p>
 

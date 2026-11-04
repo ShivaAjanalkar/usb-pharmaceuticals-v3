@@ -62,19 +62,19 @@ export default function SiteNav() {
         <div className="shell nav__inner">
           <Link href="/" className="nav__brand" aria-label={`${SITE.name} — home`}>
             <Image
-              src={asset("/assets/usb-icon-copper.png")}
+              src={asset("/assets/lifescience-emblem-copper.svg")}
               alt=""
-              width={40}
-              height={40}
-              style={{ height: 40, width: "auto" }}
+              width={48}
+              height={49}
+              className="nav__emblem"
               priority
             />
             <Image
-              src={asset("/assets/usb-wordmark-navy.png")}
+              src={asset("/assets/lifescience-wordmark-navy.svg")}
               alt={SITE.name}
-              width={150}
-              height={19}
-              style={{ height: 18, width: "auto" }}
+              width={160}
+              height={34}
+              className="nav__wordmark"
               priority
             />
           </Link>

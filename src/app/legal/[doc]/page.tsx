@@ -1,9 +1,11 @@
+import { siteUrl } from "@/lib/site-url";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import { LEGAL_DOCS, getLegalDoc } from "@/data/legal";
+import { SITE } from "@/data/site";
 
 type Params = { params: Promise<{ doc: string }> };
 
@@ -15,7 +17,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { doc } = await params;
   const found = getLegalDoc(doc);
   if (!found) return { title: "Not found" };
-  return { title: found.title, description: found.intro };
+  return { title: found.title, description: found.intro, alternates: { canonical: siteUrl(`/legal/${found.slug}/`) } };
 }
 
 export default async function LegalPage({ params }: Params) {
@@ -82,7 +84,9 @@ export default async function LegalPage({ params }: Params) {
                   <br />
                   Effective [DATE — TBC]
                   <br />
-                  Owner [LEGAL CONTACT — TBC]
+                  Owner {SITE.name}
+                  <br />
+                  <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
                 </p>
               </div>
             </div>

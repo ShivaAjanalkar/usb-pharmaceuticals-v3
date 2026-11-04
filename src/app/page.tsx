@@ -5,9 +5,8 @@ import Counter from "@/components/Counter";
 import Reveal from "@/components/Reveal";
 import { Arrow } from "@/components/SiteNav";
 import VideoFrame from "@/components/VideoFrame";
-import { SegmentIcon } from "@/components/icons";
-import { PRODUCTS, SEGMENTS } from "@/data/products";
-import { ATTRIBUTION } from "@/data/site";
+import { PRODUCTS } from "@/data/products";
+import { ATTRIBUTION, SITE } from "@/data/site";
 import { asset } from "@/lib/asset";
 
 const STRENGTHS = [
@@ -26,12 +25,11 @@ const SERVICES = [
 ];
 
 const FAQ = [
-  { q: "Does USB own a manufacturing facility?", a: "No. USB operates its own quality-control laboratory, but every product is manufactured by a third-party partner holding a valid manufacturing licence under the Drugs and Cosmetics Act, 1940. That partner is named on each product record. Testing a batch and manufacturing it are different things, and we do not describe a partner's plant as ours." },
+  { q: "Does USB own a manufacturing facility?", a: "No. USB operates its own quality-control laboratory, but every product is manufactured by a third-party partner holding a valid manufacturing licence under the Drugs and Cosmetics Act, 1940. Manufacturing-partner particulars will be published with the confirmed product information. Testing a batch and manufacturing it are different things, and we do not describe a partner's plant as ours." },
   { q: "What certifications does USB hold today?", a: "None yet, and we will not display any until they are issued and independently verifiable. The Quality page shows the slots where certifications will appear, labelled as awaiting verification. Certifications held by our manufacturing partners belong to those partners and are not ours to show." },
-  { q: "Why does the catalogue not show indications or pricing?", a: "Because Indian law does not permit it. Prescription products under Schedules H, H1 and X cannot be advertised to the public under the Drugs and Magic Remedies (Objectionable Advertisements) Act, 1954. The public catalogue therefore carries composition, strength, dosage form, pack size and therapeutic category only." },
+  { q: "Why does the catalogue not show indications or pricing?", a: "This is a corporate and brand-reference website. We currently publish the confirmed brand names; product particulars will follow once verified. Indications, efficacy claims and pricing are not published here. Please speak to a registered healthcare professional for medical advice." },
   { q: "How do I become a distributor or stockist?", a: "Send a business enquiry through the contact page with your territory, current portfolio and warehousing capability. Channel appointments are open and terms are still being set, which is the useful moment to be in the conversation." },
-  { q: "Are you looking for manufacturing partners?", a: "Yes. Partner qualification is active. We assess licence status, site capability, testing facilities and audit history before commissioning any product, so an enquiry should include your licence details and the dosage forms your site is approved for." },
-  { q: "How large is the portfolio?", a: "Twelve combinations across eight pharmacological categories are selected and in development. The catalogue lists all of them with their compositions and pack presentations. Nothing in it is launched yet, and the site says so rather than implying otherwise." },
+  { q: "How large is the portfolio?", a: `Our supported portfolio includes ${PRODUCTS.length} brands. The catalogue lists the current names. Product compositions and pack details will be published once confirmed; contact us for further information.` },
 ];
 
 export default function HomePage() {
@@ -56,7 +54,7 @@ export default function HomePage() {
                 Medicine that arrives documented, and on time
               </h1>
               <p className="lead" style={{ marginTop: 24 }} data-reveal>
-                USB Pharmaceuticals selects, markets and supplies finished
+                {SITE.shortName} selects, markets and supplies finished
                 formulations in India — manufactured for us, under our documented
                 quality oversight, by qualified third-party partners.
               </p>
@@ -73,8 +71,8 @@ export default function HomePage() {
             <div data-reveal>
               <div className="media media--hero">
                 <Image
-                  src={asset("/media/usb-lab-01.jpg")}
-                  alt="Analysts at work in the USB Pharmaceuticals quality-control laboratory"
+                  src={asset("/media/lifescience-lab-01.webp")}
+                  alt={`Analysts at work in the ${SITE.shortName} quality-control laboratory`}
                   width={1536}
                   height={1024}
                   priority
@@ -90,7 +88,7 @@ export default function HomePage() {
       <section className="section--tight">
         <Reveal className="shell">
           <div
-            className="grid grid--4"
+            className="grid grid--3"
             data-reveal
             style={{
               background: "var(--white)",
@@ -100,8 +98,7 @@ export default function HomePage() {
             }}
           >
             {[
-              [PRODUCTS.length, "Combinations selected and in development"],
-              [SEGMENTS.length, "Pharmacological categories in the portfolio"],
+              [PRODUCTS.length, "Brands in our supported portfolio"],
               [1, "Quality-control laboratory, operated by USB"],
               [0, "Certifications held — none displayed until issued"],
             ].map(([value, label]) => (
@@ -134,7 +131,7 @@ export default function HomePage() {
                 A company built to be audited
               </h2>
               <p className="prose">
-                USB Pharmaceuticals Pvt. Ltd. is a new Indian pharmaceutical
+                {SITE.name} is an Indian pharmaceutical
                 company. We are deliberately narrow: we do not own a
                 manufacturing plant and do not claim to. What we own is the
                 selection of the molecule, the qualification of the manufacturer,
@@ -227,8 +224,8 @@ export default function HomePage() {
                 />
                 <div className="media media--tall">
                   <Image
-                    src={asset("/media/usb-lab-02.jpg")}
-                    alt="The USB Pharmaceuticals laboratory"
+                    src={asset("/media/lifescience-lab-02.webp")}
+                    alt={`The ${SITE.shortName} laboratory`}
                     width={1536}
                     height={1024}
                   />
@@ -258,32 +255,23 @@ export default function HomePage() {
                 Our portfolio
               </p>
               <h2 className="display display--l" style={{ marginTop: 18 }} data-reveal>
-                Eight categories, twelve combinations
+                {PRODUCTS.length} brands, one commitment to quality
               </h2>
             </div>
             <p className="data dim" style={{ maxWidth: "34ch" }} data-reveal>
-              Named pharmacologically, never by indication — s.3, Drugs and Magic
-              Remedies Act, 1954.
+              Explore our supported brands. Product particulars are being
+              confirmed before publication.
             </p>
           </div>
 
           <div className="grid grid--4">
-            {SEGMENTS.map((segment) => (
-              <Link
-                href="/products/"
-                key={segment.name}
-                className="card card--lift"
-                data-reveal
-                style={{ textDecoration: "none", display: "block" }}
-              >
-                <div className="card__icon">
-                  <SegmentIcon category={segment.name} size={30} />
-                </div>
-                <h3>{segment.name}</h3>
-                <p className="data" style={{ color: "var(--copper-deep)" }}>
-                  {String(segment.count).padStart(2, "0")}{" "}
-                  {segment.count === 1 ? "combination" : "combinations"}
-                </p>
+            {PRODUCTS.map((product) => (
+              <Link href={`/products/${product.slug}/`} key={product.slug}
+                className="card card--lift" data-reveal
+                style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 18 }}>
+                <span className="card__icon" aria-hidden="true" style={{ fontSize: 28, fontWeight: 300 }}>{product.letter}</span>
+                <h3 style={{ margin: 0, overflowWrap: "anywhere" }}>{product.brand}</h3>
+                <span style={{ marginTop: "auto", fontSize: 14, color: "var(--copper-deep)" }}>View brand <span aria-hidden="true">→</span></span>
               </Link>
             ))}
           </div>
@@ -328,8 +316,8 @@ export default function HomePage() {
                 What partners ask first
               </h2>
               <p className="prose">
-                If the answer you need is not here, the contact page routes your
-                enquiry to the function that owns it.
+                If the answer you need is not here, email us or call the office.
+                Our contact page has the details.
               </p>
               <div style={{ marginTop: 28 }}>
                 <Link href="/contact/" className="btn btn--navy">

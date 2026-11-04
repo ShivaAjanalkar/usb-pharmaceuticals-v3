@@ -1,20 +1,21 @@
+const COMPANY_NAME = "USB Lifescience Pvt. Ltd.";
+
 export const SITE = {
-  name: "USB Pharmaceuticals Pvt. Ltd.",
-  shortName: "USB Pharmaceuticals",
+  name: COMPANY_NAME,
+  shortName: "USB Lifescience",
   tagline: "Universal Science for Better Life",
   description:
-    "USB Pharmaceuticals Pvt. Ltd. is an Indian pharmaceutical marketing company. We select, market and supply finished formulations manufactured for us by qualified third-party manufacturing partners.",
-  /** Placeholders remain visible until the real values are supplied. */
-  domain: "[DOMAIN-TBC]",
-  phone: "+91 [PHONE — 10 DIGITS]",
-  whatsapp: "https://wa.me/91",
-  cin: "[CIN — 21 CHAR]",
+    `${COMPANY_NAME} is an Indian pharmaceutical marketing company. We select, market and supply finished formulations manufactured for us by qualified third-party manufacturing partners.`,
+  /** Confirmed email domain; hosting remains on the current GitHub Pages URL. */
+  domain: "usblifescience.com",
+  email: "admin@usblifescience.com",
+  phone: "+91 99168 62083",
+  phoneHref: "tel:+919916862083",
+  /** Unconfirmed company details remain explicit. */
+  cin: "Pending confirmation",
   address: [
-    "USB Pharmaceuticals Pvt. Ltd.",
-    "[ADDRESS LINE 1]",
-    "[ADDRESS LINE 2]",
-    "[CITY] — [PIN]",
-    "[STATE], India",
+    COMPANY_NAME,
+    "Registered office address pending confirmation.",
   ],
 } as const;
 
@@ -64,4 +65,4 @@ export const FOOTER_COLUMNS = [
 ] as const;
 
 export const ATTRIBUTION =
-  "Manufactured by third-party manufacturing partners licensed under the Drugs and Cosmetics Act, 1940. USB Pharmaceuticals Pvt. Ltd. is a marketing company and does not own or operate a manufacturing facility.";
+  `Manufactured by third-party manufacturing partners licensed under the Drugs and Cosmetics Act, 1940. ${SITE.name} is a marketing company and does not own or operate a manufacturing facility.`;

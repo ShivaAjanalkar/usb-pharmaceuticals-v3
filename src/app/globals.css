@@ -1,5 +1,5 @@
 /* ============================================================================
-   USB Pharmaceuticals — v3, the photographic edition.
+   USB Lifescience — v3, the photographic edition.
 
    A third direction: warm off-white ground, very soft geometry, thin
    wide-tracked display type, and real photography and video of USB's own
@@ -632,6 +632,10 @@ textarea.control { resize: vertical; min-height: 130px; }
   .footer__cols { grid-template-columns: minmax(0, 1fr); }
   .ptable-wrap { display: none; }
   .pcards { display: grid; }
-  .nav__brand img:last-child { display: none; }
+  .nav__inner { gap: 12px; }
+  .nav__brand { gap: 8px; min-width: 0; flex: 0 1 auto; }
+  .nav__brand img { flex-shrink: 0; }
+  .nav__wordmark { width: clamp(140px, 50vw, 160px); height: auto; }
+  .nav__actions > .btn { display: none; }
   .media--hero { aspect-ratio: 4 / 3; }
 }

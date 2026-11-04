@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { asset } from "@/lib/asset";
+import { SITE } from "@/data/site";
 
 /**
  * A contained, muted, looping video of USB's own laboratory.
@@ -113,7 +114,7 @@ export default function VideoFrame({
         loop
         playsInline
         preload="none"
-        aria-label={caption ?? "USB Pharmaceuticals laboratory"}
+        aria-label={caption ?? `${SITE.shortName} laboratory`}
         {...(load ? { src: asset(src) } : {})}
       />
       {badge && <span className="media__badge">{badge}</span>}

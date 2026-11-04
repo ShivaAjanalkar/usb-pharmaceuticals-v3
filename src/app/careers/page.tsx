@@ -7,12 +7,10 @@ import { SITE } from "@/data/site";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "USB Pharmaceuticals recruits slowly and describes roles honestly. No positions are open today.",
+    `${SITE.shortName} recruits slowly and describes roles honestly. No positions are open today.`,
 };
 
 export default function CareersPage() {
-  const careersEmail = `careers@${SITE.domain}`;
-
   return (
     <>
       <PageHero
@@ -52,13 +50,11 @@ export default function CareersPage() {
                 Send a CV and a short note on the function you want to own.
                 Speculative applications are read.
               </p>
-              <a href={`mailto:${careersEmail}`} className="btn btn--copper" style={{ wordBreak: "break-all" }}>
-                {careersEmail} <Arrow />
+              <a href={`mailto:${SITE.email}`} className="btn btn--copper" style={{ wordBreak: "break-all" }}>
+                {SITE.email} <Arrow />
               </a>
               <p className="data dim" style={{ marginTop: 26, paddingTop: 20, borderTop: "1px solid var(--line)", fontSize: 11, lineHeight: 1.8 }}>
-                Response time · within 10 working days
-                <br />
-                Location · [REGISTERED OFFICE — TBC]
+                Location · registered office address pending confirmation
               </p>
             </div>
           </div>
@@ -104,7 +100,7 @@ export default function CareersPage() {
                 opened recruitment. When roles open they will be listed here with
                 function, location, experience band and reporting line.
               </p>
-              <a href={`mailto:${careersEmail}`} className="btn btn--ghost">
+              <a href={`mailto:${SITE.email}`} className="btn btn--ghost">
                 Register interest instead <Arrow />
               </a>
             </div>

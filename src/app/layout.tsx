@@ -22,21 +22,46 @@ const mono = IBM_Plex_Mono({
 });
 
 const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  "https://shivaajanalkar.github.io/usb-pharmaceuticals-v3"
+).replace(/\/+$/, "");
+const metadataBase = new URL(`${siteUrl}/`);
+// Resolve against the site URL once so a GitHub Pages project path is preserved.
+const socialImage = new URL("assets/lifescience-social-1200x630.png", metadataBase).href;
 
 export const metadata: Metadata = {
+  metadataBase,
   title: {
     default: `${SITE.name} — ${SITE.tagline}`,
     template: `%s — ${SITE.shortName}`,
   },
   description: SITE.description,
+  // Next resolves ./ against the current route, including static product/legal pages.
+  alternates: { canonical: "./" },
   icons: {
-    icon: `${base}/assets/usb-favicon-180.png`,
-    apple: `${base}/assets/usb-appicon-512.png`,
+    icon: [
+      { url: `${base}/assets/lifescience-favicon-16.png`, sizes: "16x16", type: "image/png" },
+      { url: `${base}/assets/lifescience-favicon-32.png`, sizes: "32x32", type: "image/png" },
+    ],
+    apple: [
+      { url: `${base}/assets/lifescience-apple-touch-icon-180.png`, sizes: "180x180", type: "image/png" },
+    ],
   },
   openGraph: {
     title: `${SITE.name} — ${SITE.tagline}`,
     description: SITE.description,
+    siteName: SITE.name,
+    locale: "en_IN",
     type: "website",
+    url: "./",
+    images: [{ url: socialImage, width: 1200, height: 630, alt: SITE.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE.name} — ${SITE.tagline}`,
+    description: SITE.description,
+    images: [{ url: socialImage, alt: SITE.name }],
   },
 };
 

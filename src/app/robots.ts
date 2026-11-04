@@ -7,12 +7,13 @@ const SITE_URL = (
 ).replace(/\/$/, "");
 
 export default function robots(): MetadataRoute.Robots {
+  const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
   return {
     rules: {
       userAgent: "*",
       allow: "/",
-      // The gate and the handover sheet are not public-facing pages.
-      disallow: ["/hcp/", "/design-system/"],
+      // Respect the project path while hosting on GitHub Pages.
+      disallow: [`${base}/hcp/`],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,
   };

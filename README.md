@@ -1,86 +1,43 @@
-# USB Pharmaceuticals — v3, the photographic edition
+# USB Lifescience — v3
 
-The **third** independent website for USB Pharmaceuticals Pvt. Ltd., hosted
-separately from v1 and v2. Same company, same product data, a third visual
-register — and the first of the three built around real photography and video
-of USB's own laboratory.
+The photographic v3 website for **USB Lifescience Pvt. Ltd.**, an Indian
+pharmaceutical marketing company. Tagline: **Universal Science for Better Life**.
+This rebrand applies to v3; v1 and v2 are separate sites.
 
-| | v1 — light | v2 — dark | **v3 — this site** |
-|---|---|---|---|
-| Ground | Paper `#FCFCFA` | Near-black `#111111` | Warm off-white `#F4F4F2` |
-| Geometry | 45° chamfers, no round corners | Pills + one asymmetric corner | Very soft — 160px pills, 32px cards |
-| Display type | Instrument Sans 600, tight | Boldonse, −6% tracking | Montserrat **200**, +2% tracking |
-| Imagery | Drawn graphic system only | Drawn graphic system only | **Laboratory photography and video** |
-| Register | Meticulous, quiet | Editorial, bold | Calm, clinical, warm |
+Current site: [GitHub Pages](https://shivaajanalkar.github.io/usb-pharmaceuticals-v3/).
+The hosting URL and repository base path remain unchanged. `usblifescience.com`
+is the confirmed email domain; no website domain cutover is configured.
 
-## Provenance
+- Office: **+91 99168 62083** ([call](tel:+919916862083)).
+- All general, business, partnership, careers and privacy enquiries:
+  **[admin@usblifescience.com](mailto:admin@usblifescience.com)**.
+- Registered office address and CIN: **pending confirmation**.
 
-Structure derived from the **Loguna** Webflow template (a healthcare-practice
-layout), studied at `https://loguna.webflow.io/`. No markup, CSS, JavaScript or
-assets from the template are used — it is rebuilt from scratch in Next.js. The
-palette is USB's own: deep navy `#022D3D` in place of the template's forest
-green, copper `#CDA665` in place of its olive.
+The enquiry form prepares a `mailto:` email and opens the visitor's email app.
+The visitor must review and send it there. There is no backend submission or
+sending confirmation, and no response time is promised. No WhatsApp contact is
+published.
 
-Sections **not** carried over, because a regulated pharmaceutical company
-cannot honestly fill them:
+The catalogue contains **17 confirmed brand names only**. Product specifications
+including composition, strength, dosage form, pack size, schedule and manufacturer
+details remain pending confirmation; do not infer them from a brand name. Product
+data lives in `src/data/products.ts`.
 
-| Template section | Why not |
-|---|---|
-| "30+ years · 50K+ patients · 98% satisfaction" | Fabricated metrics. Replaced with four true numbers, including `00` certifications held |
-| Named patient testimonials | Invented people. Replaced with the FAQ partners actually ask |
-| "Meet the founder" | Founder content was removed from all three sites |
-| Pricing plans | Publishing pharmaceutical pricing to the public is not permitted in India |
-| Patient-facing service menu | USB is a B2B marketing company, not a clinic. Replaced with its five real capabilities |
+Logo-kit assets are in `public/assets/`. Supplied laboratory stills, video clips
+and poster frames are in `public/media/`; imagery does not establish a
+manufacturing claim. USB remains a pharmaceutical marketing company working with
+third-party manufacturing partners. `VideoFrame` uses poster-first loading,
+visibility-aware playback and a still image for reduced motion.
 
-## Media
+Next.js 16, React 19 and TypeScript; static export to GitHub Pages. Use `npm ci`
+and `npm run dev` for local development, and `npm run typecheck` for type checks.
+The existing Pages workflow supplies the repository base path and site URL.
 
-Photography and video in `public/media/` are USB's own, supplied by the
-company. Two stills of the laboratory and three clips of analytical work.
+Existing launch gaps still require confirmation: product particulars and artwork;
+registered address and CIN; state coverage; licences and certification evidence;
+legal effective date and jurisdiction; privacy retention periods and
+processor details; and a confirmed pharmacovigilance reporting contact. Do not
+present the admin inbox as a monitored drug-safety service. The location map
+remains pending the registered address.
 
-Two things worth knowing about how they are handled:
-
-- **Nothing claims USB manufactures.** USB operates a **quality-control
-  laboratory**; it does not own a manufacturing plant. Those are different
-  facts and the site keeps them apart — every product record still carries
-  "USB does not own or operate a manufacturing facility", and the laboratory
-  imagery is captioned as the laboratory, never as a production site.
-- **Source clips are 848×478**, so they are always placed in contained,
-  rounded frames and never stretched full-bleed, where they would go soft.
-
-`VideoFrame` handles playback:
-
-1. A **poster frame renders first and always**; the `<video>` only receives a
-   source when the frame is near the viewport, so the page does not pull
-   megabytes up front — and if a clip never loads, a real still stands in.
-2. It **plays only while on screen and the tab is visible**, so the browser is
-   never decoding three clips at once.
-3. **Reduced motion gets the poster only** — no fetch, no autoplay.
-
-It deliberately does **not** use `IntersectionObserver`: IO reports nothing at
-all in a hidden document and only fires on threshold crossings, so a frame
-scrolled past in one jump never loads. It also does not blindly trust
-`requestAnimationFrame`, which is suspended in a hidden document — when the
-page is hidden the check runs synchronously instead. Both of these were caught
-in testing, not in theory.
-
-## Stack
-
-Next.js 16 (App Router, React 19), TypeScript, hand-authored CSS, static export
-to GitHub Pages. No runtime dependencies beyond React.
-
-```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run build      # static export to ./out
-```
-
-## Unchanged from the other two
-
-The skin changed; the constraints did not. Product data lives in
-`src/data/products.ts`, whose `Product` type has no field for an indication, a
-dose or a price. Therapeutic categories are named pharmacologically rather than
-by indication (s.3, Drugs and Magic Remedies Act, 1954). Prescribing
-information sits behind a non-dismissable HCP gate. No certification badges are
-rendered anywhere. Undecided values render as visible `[BRACKETED]` slots. And
-product particulars stay in monospace — a composition string is data, so it
-looks like data in this skin too.
+Asset editing details and prompts: [brand-asset-notes](docs/brand-asset-notes.md).

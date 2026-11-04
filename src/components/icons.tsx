@@ -7,9 +7,7 @@
  * corner. Colour comes from `currentColor`, so an icon inherits whatever
  * context it sits in.
  *
- * These replace photography rather than decorate it: the company has no
- * facility to photograph and no product to shoot, so the graphic system
- * carries the page.
+ * Shared graphic vocabulary for catalogue and navigation details.
  */
 
 import type { Category, DosageForm } from "@/data/products";
