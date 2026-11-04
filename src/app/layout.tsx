@@ -41,8 +41,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "./" },
   icons: {
     icon: [
+      { url: `${base}/favicon.ico`, sizes: "16x16 32x32 48x48 64x64 128x128 256x256", type: "image/x-icon" },
       { url: `${base}/assets/lifescience-favicon-16.png`, sizes: "16x16", type: "image/png" },
       { url: `${base}/assets/lifescience-favicon-32.png`, sizes: "32x32", type: "image/png" },
+      { url: `${base}/favicon.png`, sizes: "192x192", type: "image/png" },
     ],
     apple: [
       { url: `${base}/assets/lifescience-apple-touch-icon-180.png`, sizes: "180x180", type: "image/png" },

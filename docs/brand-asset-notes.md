@@ -3,6 +3,17 @@
 The approved logo artwork comes directly from the supplied USB Lifescience kit.
 It has not been redrawn. The social card is composed from that vector artwork.
 
+## Search and browser icons
+
+`public/assets/lifescience-app-icon.svg` is the supplied
+`USB_AppIcon_Navy_Rounded.svg`, unchanged. The 192 × 192 `public/favicon.png`
+and multi-resolution `public/favicon.ico` (16, 32, 48, 64, 128 and 256 pixels)
+are raster exports of that artwork. These stable, public URLs are linked in page
+metadata alongside the existing kit icons. The full company logo remains in
+homepage Organization structured data. Google controls search-result refresh
+timing and whether it shows a favicon; publishing these files does not update
+Google's cached results immediately.
+
 ## Laboratory imagery
 
 The two supplied laboratory images were edited using the built-in image-generation tool to replace the former company-name signage and coat branding. These are edited illustrative images, not newly commissioned documentary photographs. The originals remain in the project-level content folder and in Git history.
