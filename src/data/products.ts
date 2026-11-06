@@ -1,15 +1,15 @@
 /**
- * Supported brand names confirmed by USB Lifescience on 4 November 2026.
+ * Brand names and compositions supplied by USB Lifescience on 6 November 2026.
  *
- * A brand is not a unique pharmaceutical combination. Composition, dosage
- * form, pack size and schedule have not been supplied for this updated list;
- * do not infer them from a name or copy them from an older proposed variant.
- * The previous working specifications remain available in Git history.
+ * Publish the supplied composition text without inferring dosage forms, pack
+ * sizes, schedules or manufacturer particulars. The quantity of DHA in
+ * Megalo-D has not been specified. Existing brand URLs and IDs remain stable.
  */
 export type Product = {
   id: string;
   slug: string;
   brand: string;
+  composition: string;
   letter: string;
 };
 
@@ -27,29 +27,30 @@ export type Category =
 export type DosageForm = "Tablet" | "Softgel capsule" | "Combi-kit";
 
 const SUPPORTED_BRANDS = [
-  ["ce-35", "CE-35"],
-  ["desentra", "Desentra"],
-  ["drospira-20", "Drospira-20"],
-  ["drospira-30", "Drospira-30"],
-  ["endora-5", "Endora-5"],
-  ["endora-cr-10", "Endora-CR 10"],
-  ["estraval-e2", "Estraval E2"],
-  ["estraval-gel", "Estraval -Gel"],
-  ["letrofit-2-5-mg", "Letrofit 2.5 MG"],
-  ["letrofit-5-mg", "Letrofit-5 MG"],
-  ["megastron-10", "Megastron-10"],
-  ["pregnill-kit", "Pregnill-kit"],
-  ["prolactra", "Prolactra"],
-  ["prolactra-d", "Prolactra - D"],
-  ["spasmora-m", "Spasmora-M"],
-  ["tramexa-mf", "Tramexa-MF"],
-  ["megalo-d", "Megalo-D"],
+  ["ce-35", "CE-35", "Cyproterone Acetate 2 mg + Ethinyl Estradiol 0.035 mg"],
+  ["desentra", "Desentra", "Desogestrel 0.15 mg + Ethinyl Estradiol 0.02 mg"],
+  ["drospira-20", "Drospira-20", "Drospirenone 3 mg + Ethinyl Estradiol 0.02 mg"],
+  ["drospira-30", "Drospira-30", "Drospirenone 3 mg + Ethinyl Estradiol 0.03 mg"],
+  ["endora-5", "Endora-5", "Norethisterone Acetate 5 mg"],
+  ["endora-cr-10", "Endora-CR 10", "Norethisterone Acetate CR 10 mg"],
+  ["estraval-e2", "Estraval E2", "Estradiol Valerate 2 mg"],
+  ["estraval-gel", "Estraval-Gel", "Estradiol 0.06% w/w"],
+  ["letrofit-2-5-mg", "Letrofit 2.5 MG", "Letrozole 2.5 mg"],
+  ["letrofit-5-mg", "Letrofit-5 MG", "Letrozole 5 mg"],
+  ["megastron-10", "Megastron-10", "Medroxyprogesterone Acetate 10 mg"],
+  ["pregnill-kit", "Pregnill-Kit", "Mifepristone 200 mg + Misoprostol 200 mcg"],
+  ["prolactra", "Prolactra", "Cabergoline 0.25 mg"],
+  ["prolactra-d", "Prolactra-D", "Cabergoline 0.5 mg"],
+  ["spasmora-m", "Spasmora-M", "Drotaverine 80 mg + Mefenamic Acid 250 mg"],
+  ["tramexa-mf", "Tramexa-MF", "Tranexamic Acid 500 mg + Mefenamic Acid 250 mg"],
+  ["megalo-d", "Megalo-D", "L-Methylfolate 5 mg + Pyridoxal-5-Phosphate 10 mg + Methylcobalamin 1500 mcg + DHA"],
 ] as const;
 
-export const PRODUCTS: Product[] = SUPPORTED_BRANDS.map(([slug, brand], index) => ({
+export const PRODUCTS: Product[] = SUPPORTED_BRANDS.map(([slug, brand, composition], index) => ({
   id: `USB-B-${String(index + 1).padStart(3, "0")}`,
   slug,
   brand,
+  composition,
   letter: brand[0].toUpperCase(),
 }));
 

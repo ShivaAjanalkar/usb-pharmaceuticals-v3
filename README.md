@@ -4,6 +4,10 @@ The photographic v3 website for **USB Lifescience Pvt. Ltd.**, an Indian
 pharmaceutical marketing company. Tagline: **Universal Science for Better Life**.
 This rebrand applies to v3; v1 and v2 are separate sites.
 
+Homepage commitment: **Committed to Quality. Driven by Science. Dedicated to Life.**
+Homepage promise: **To deliver quality healthcare solutions with integrity,
+innovation and responsibility, making better healthcare accessible to everyone.**
+
 Public site: [USB Lifescience](https://usblifescience.com/).
 GitHub Pages serves the site at the domain root. The workflow builds without a
 repository base path and uses the custom domain for canonical URLs, sitemap and
@@ -21,10 +25,12 @@ The visitor must review and send it there. There is no backend submission or
 sending confirmation, and no response time is promised. No WhatsApp contact is
 published.
 
-The catalogue contains **17 confirmed brand names only**. Product specifications
-including composition, strength, dosage form, pack size, schedule and manufacturer
-details remain pending confirmation; do not infer them from a brand name. Product
-data lives in `src/data/products.ts`.
+The catalogue contains **17 brands and their user-supplied compositions**, updated
+on 6 November 2026. Catalogue search matches both brand names and compositions.
+Megalo-D lists DHA without a quantity because none was supplied. Dosage form, pack
+size, schedule and manufacturer details remain pending confirmation; do not infer
+them from a brand name. Product data lives in `src/data/products.ts`; existing
+brand IDs and URLs are preserved.
 
 Logo-kit assets are in `public/assets/`. Supplied laboratory stills, video clips
 and poster frames are in `public/media/`; imagery does not establish a

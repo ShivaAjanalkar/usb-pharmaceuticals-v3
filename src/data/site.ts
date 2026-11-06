@@ -4,6 +4,8 @@ export const SITE = {
   name: COMPANY_NAME,
   shortName: "USB Lifescience",
   tagline: "Universal Science for Better Life",
+  commitment: "Committed to Quality. Driven by Science. Dedicated to Life.",
+  promise: "To deliver quality healthcare solutions with integrity, innovation and responsibility, making better healthcare accessible to everyone.",
   description:
     `${COMPANY_NAME} markets and supplies pharmaceutical formulations in India through qualified, licensed manufacturing partners.`,
   /** Confirmed public website and email domain. */

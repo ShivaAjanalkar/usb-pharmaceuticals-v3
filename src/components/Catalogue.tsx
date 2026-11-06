@@ -12,7 +12,7 @@ export default function Catalogue() {
     const search = query.trim().toLocaleLowerCase().replace(/[\s-]+/g, "");
     return PRODUCTS.filter((p) =>
       (letter === "All" || p.letter === letter) &&
-      (!search || p.brand.toLocaleLowerCase().replace(/[\s-]+/g, "").includes(search)),
+      (!search || `${p.brand} ${p.composition}`.toLocaleLowerCase().replace(/[\s-]+/g, "").includes(search)),
     );
   }, [letter, query]);
 
@@ -23,7 +23,7 @@ export default function Catalogue() {
           <div className="filters__field">
             <IconSearch size={18} />
             <input type="search" className="search" value={query}
-              placeholder="Search our brands…" aria-label="Search brands"
+              placeholder="Search brands or compositions…" aria-label="Search brands or compositions"
               onChange={(event) => setQuery(event.target.value)} />
           </div>
           <div className="chips" role="group" aria-label="Filter by first letter" style={{ marginTop: 20 }}>
@@ -47,7 +47,7 @@ export default function Catalogue() {
                   style={{ display: "flex", flexDirection: "column", height: "100%", textDecoration: "none", gap: 20 }}>
                   <span className="card__icon" aria-hidden="true" style={{ fontFamily: "var(--sans)", fontSize: 28, fontWeight: 300 }}>{product.letter}</span>
                   <h2 style={{ fontSize: "clamp(21px, 2.3vw, 28px)", fontWeight: 400, lineHeight: 1.35, margin: 0, overflowWrap: "anywhere" }}>{product.brand}</h2>
-                  <p className="data dim" style={{ margin: 0, fontSize: 12 }}>Product details awaiting confirmation</p>
+                  <p style={{ margin: 0, fontSize: 15, lineHeight: 1.7, overflowWrap: "anywhere" }}>{product.composition}</p>
                   <span style={{ marginTop: "auto", color: "var(--copper-deep)", fontSize: 14 }}>View brand <span aria-hidden="true">→</span></span>
                 </Link>
               </li>

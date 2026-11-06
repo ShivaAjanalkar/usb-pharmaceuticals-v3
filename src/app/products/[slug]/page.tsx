@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!product) return { title: "Catalogue updated", robots: { index: false, follow: true } };
   return {
     title: product.brand,
-    description: `${product.brand} is part of the ${SITE.shortName} portfolio. Product particulars are awaiting confirmation.`,
+    description: `${product.brand}: ${product.composition}. Product information and enquiries from ${SITE.shortName}.`,
     alternates: { canonical: siteUrl(`/products/${product.slug}/`) },
   };
 }
@@ -50,8 +50,9 @@ export default async function ProductPage({ params }: Params) {
             <div data-reveal>
               <div className="card">
                 <p className="eyebrow" style={{ marginBottom: 22 }}>Product information</p>
-                <h2 style={{ fontWeight: 400 }}>Details awaiting confirmation</h2>
-                <p>Composition, strength, dosage form, pack presentation and other product particulars will be published once confirmed.</p>
+                <h2 style={{ fontWeight: 400 }}>Composition</h2>
+                <p style={{ color: "var(--ink)", fontSize: 19, lineHeight: 1.75, overflowWrap: "anywhere" }}>{product.composition}</p>
+                <p className="dim">Dosage form, pack presentation and other product particulars will be published once confirmed.</p>
                 <a href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Product enquiry — ${product.brand}`)}`} className="btn btn--navy" style={{ marginTop: 20 }}>Enquire about this brand <span aria-hidden="true">→</span></a>
               </div>
               <p className="notice" style={{ marginTop: 24 }}>

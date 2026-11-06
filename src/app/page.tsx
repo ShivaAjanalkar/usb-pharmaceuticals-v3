@@ -44,9 +44,9 @@ const SERVICES = [
 const FAQ = [
   { q: "Does USB own a manufacturing facility?", a: "No. USB operates its own quality-control laboratory, but every product is manufactured by a third-party partner holding a valid manufacturing licence under the Drugs and Cosmetics Act, 1940. Manufacturing-partner particulars will be published with the confirmed product information. Testing a batch and manufacturing it are different things, and we do not describe a partner's plant as ours." },
   { q: "What certifications does USB hold today?", a: "None yet, and we will not display any until they are issued and independently verifiable. The Quality page shows the slots where certifications will appear, labelled as awaiting verification. Certifications held by our manufacturing partners belong to those partners and are not ours to show." },
-  { q: "Why does the catalogue not show indications or pricing?", a: "This is a corporate and brand-reference website. We currently publish the confirmed brand names; product particulars will follow once verified. Indications, efficacy claims and pricing are not published here. Please speak to a registered healthcare professional for medical advice." },
+  { q: "Why does the catalogue not show indications or pricing?", a: "This is a corporate and brand-reference website. We publish our supported brand names and their compositions; further product particulars will follow once verified. Indications, efficacy claims and pricing are not published here. Please speak to a registered healthcare professional for medical advice." },
   { q: "How do I become a distributor or stockist?", a: "Send a business enquiry through the contact page with your territory, current portfolio and warehousing capability. Channel appointments are open and terms are still being set, which is the useful moment to be in the conversation." },
-  { q: "How large is the portfolio?", a: `Our supported portfolio includes ${PRODUCTS.length} brands. The catalogue lists the current names. Product compositions and pack details will be published once confirmed; contact us for further information.` },
+  { q: "How large is the portfolio?", a: `Our supported portfolio includes ${PRODUCTS.length} brands. The catalogue lists the current names and compositions. Contact us for pack details, availability and further product information.` },
 ];
 
 export default function HomePage() {
@@ -80,14 +80,14 @@ export default function HomePage() {
           >
             <div>
               <p className="eyebrow" data-reveal>
-                Universal Science for Better Life
+                Our commitment:
               </p>
               <h1
-                className="display display--xl"
+                className="display display--l"
                 style={{ margin: "clamp(18px, 2vw, 28px) 0 0" }}
                 data-reveal
               >
-                Medicine that arrives documented, and on time
+                {SITE.commitment}
               </h1>
               <p className="lead" style={{ marginTop: 24 }} data-reveal>
                 {SITE.shortName} selects, markets and supplies finished
@@ -116,6 +116,16 @@ export default function HomePage() {
                 <span className="media__badge">USB laboratory</span>
               </div>
             </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── our promise ──────────────────────────────────────────────────── */}
+      <section className="section--tight" aria-labelledby="home-promise" style={{ paddingTop: 0 }}>
+        <Reveal className="shell">
+          <div className="grid grid--2" style={{ background: "var(--navy)", borderRadius: "var(--r-lg)", padding: "clamp(28px, 3.4vw, 52px)", alignItems: "start" }}>
+            <h2 id="home-promise" className="eyebrow eyebrow--light" data-reveal>Our promise:</h2>
+            <p className="lead" style={{ color: "var(--white)", margin: 0 }} data-reveal>{SITE.promise}</p>
           </div>
         </Reveal>
       </section>
@@ -295,8 +305,8 @@ export default function HomePage() {
               </h2>
             </div>
             <p className="data dim" style={{ maxWidth: "34ch" }} data-reveal>
-              Explore our supported brands. Product particulars are being
-              confirmed before publication.
+              Explore our supported brands and their compositions. Contact us
+              for further product information.
             </p>
           </div>
 
