@@ -16,7 +16,7 @@ export default function PageHero({
         paddingBottom: "clamp(32px, 4vw, 56px)",
       }}
     >
-      <Reveal className="shell">
+      <Reveal className="shell" intro>
         <p className="eyebrow" data-reveal>
           {tag}
         </p>

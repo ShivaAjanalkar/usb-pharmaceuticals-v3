@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono, Montserrat } from "next/font/google";
 import SiteFooter from "@/components/SiteFooter";
 import SiteNav from "@/components/SiteNav";
+import MotionProvider from "@/components/MotionProvider";
 import { SITE } from "@/data/site";
 import "./globals.css";
 
@@ -73,9 +74,11 @@ export default function RootLayout({
   return (
     <html lang="en-IN" className={`${sans.variable} ${mono.variable}`}>
       <body>
+        <MotionProvider>
         <SiteNav />
         <main id="content">{children}</main>
         <SiteFooter />
+        </MotionProvider>
       </body>
     </html>
   );

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { shouldAnimate } from "@/lib/motion";
+import { useMotion } from "@/components/MotionProvider";
 
 /**
  * A stat that counts up once, when it is first scrolled to.
@@ -21,9 +22,11 @@ export default function Counter({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [shown, setShown] = useState(value);
+  const { enabled } = useMotion();
 
   useEffect(() => {
     const el = ref.current;
+    if (!enabled) { setShown(value); return; }
     if (!el || !shouldAnimate() || value === 0) return;
 
     let started = false;
@@ -58,7 +61,7 @@ export default function Counter({
       window.removeEventListener("scroll", check);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [value]);
+  }, [value, enabled]);
 
   return (
     <span ref={ref}>

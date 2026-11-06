@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { IconSearch } from "@/components/icons";
 import { LETTERS, PRODUCTS } from "@/data/products";
+import Reveal from "@/components/Reveal";
 
 export default function Catalogue() {
   const [letter, setLetter] = useState("All");
@@ -40,10 +41,10 @@ export default function Catalogue() {
           </div>
         </div>
         {rows.length ? (
-          <ul className="grid grid--3" style={{ listStyle: "none", margin: 0, padding: 0 }}>
+          <Reveal key={`${letter}:${query}`} as="ul" className="grid grid--3 catalogue-grid" intro>
             {rows.map((product) => (
-              <li key={product.slug}>
-                <Link href={`/products/${product.slug}/`} className="card card--lift"
+              <li key={product.slug} data-reveal>
+                <Link href={`/products/${product.slug}/`} className="card card--lift brand-card"
                   style={{ display: "flex", flexDirection: "column", height: "100%", textDecoration: "none", gap: 20 }}>
                   <span className="card__icon" aria-hidden="true" style={{ fontFamily: "var(--sans)", fontSize: 28, fontWeight: 300 }}>{product.letter}</span>
                   <h2 style={{ fontSize: "clamp(21px, 2.3vw, 28px)", fontWeight: 400, lineHeight: 1.35, margin: 0, overflowWrap: "anywhere" }}>{product.brand}</h2>
@@ -52,7 +53,7 @@ export default function Catalogue() {
                 </Link>
               </li>
             ))}
-          </ul>
+          </Reveal>
         ) : (
           <p className="card" style={{ padding: "48px 24px", textAlign: "center" }}>No brands match these filters. Reset to see all {PRODUCTS.length} brands.</p>
         )}

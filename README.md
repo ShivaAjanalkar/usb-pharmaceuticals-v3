@@ -38,6 +38,15 @@ manufacturing claim. USB remains a pharmaceutical marketing company working with
 third-party manufacturing partners. `VideoFrame` uses poster-first loading,
 visibility-aware playback and a still image for reduced motion.
 
+The motion update uses the supplied laboratory media in a three-slide hero,
+individual scroll entrances, card and button feedback, an animated mobile menu,
+and a page-progress indicator. A floating Pause motion control stops the motion
+layer for the session; the device's reduced-motion setting always takes priority.
+The slideshow also has its own pause and manual navigation controls, and stops
+advancing off screen or in a hidden tab. Video sources load near the viewport and
+play only on screen. Original HTML stays visible if JavaScript or animation APIs
+are unavailable. Run `npm run test:motion` for entrance/cleanup regression checks.
+
 Next.js 16, React 19 and TypeScript; static export to GitHub Pages. Use `npm ci`
 and `npm run dev` for local development, and `npm run typecheck` for type checks.
 The existing Pages workflow supplies the repository base path and site URL.

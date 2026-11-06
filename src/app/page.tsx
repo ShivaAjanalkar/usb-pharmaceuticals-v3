@@ -10,6 +10,8 @@ import { PRODUCTS } from "@/data/products";
 import { ATTRIBUTION, SITE } from "@/data/site";
 import { asset } from "@/lib/asset";
 import JsonLd from "@/components/JsonLd";
+import LabShowcase from "@/components/LabShowcase";
+import ScienceMotif from "@/components/ScienceMotif";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -72,8 +74,8 @@ export default function HomePage() {
         ],
       }} />
       {/* ── hero ─────────────────────────────────────────────────────────── */}
-      <section style={{ paddingTop: "clamp(120px, 15vh, 172px)", paddingBottom: "clamp(40px, 5vw, 72px)" }}>
-        <Reveal className="shell">
+      <section className="home-hero" style={{ paddingTop: "clamp(120px, 15vh, 172px)", paddingBottom: "clamp(40px, 5vw, 72px)" }}>
+        <Reveal className="shell" intro>
           <div
             className="grid grid--2"
             style={{ gap: "clamp(28px, 4vw, 64px)", alignItems: "center" }}
@@ -83,11 +85,10 @@ export default function HomePage() {
                 Our commitment:
               </p>
               <h1
-                className="display display--l"
+                className="display display--l hero-heading"
                 style={{ margin: "clamp(18px, 2vw, 28px) 0 0" }}
-                data-reveal
               >
-                {SITE.commitment}
+                {SITE.commitment.match(/[^.]+\./g)?.map(sentence => <span className="hero-heading__line" key={sentence} data-reveal>{sentence.trim()} </span>)}
               </h1>
               <p className="lead" style={{ marginTop: 24 }} data-reveal>
                 {SITE.shortName} selects, markets and supplies finished
@@ -105,16 +106,7 @@ export default function HomePage() {
             </div>
 
             <div data-reveal>
-              <div className="media media--hero">
-                <Image
-                  src={asset("/media/lifescience-lab-01.webp")}
-                  alt={`Analysts at work in the ${SITE.shortName} quality-control laboratory`}
-                  width={1536}
-                  height={1024}
-                  priority
-                />
-                <span className="media__badge">USB laboratory</span>
-              </div>
+              <LabShowcase />
             </div>
           </div>
         </Reveal>
@@ -123,7 +115,8 @@ export default function HomePage() {
       {/* ── our promise ──────────────────────────────────────────────────── */}
       <section className="section--tight" aria-labelledby="home-promise" style={{ paddingTop: 0 }}>
         <Reveal className="shell">
-          <div className="grid grid--2" style={{ background: "var(--navy)", borderRadius: "var(--r-lg)", padding: "clamp(28px, 3.4vw, 52px)", alignItems: "start" }}>
+          <div className="grid grid--2 promise-panel" style={{ background: "var(--navy)", borderRadius: "var(--r-lg)", padding: "clamp(28px, 3.4vw, 52px)", alignItems: "start" }}>
+            <ScienceMotif />
             <h2 id="home-promise" className="eyebrow eyebrow--light" data-reveal>Our promise:</h2>
             <p className="lead" style={{ color: "var(--white)", margin: 0 }} data-reveal>{SITE.promise}</p>
           </div>
@@ -313,7 +306,7 @@ export default function HomePage() {
           <div className="grid grid--4">
             {PRODUCTS.map((product) => (
               <Link href={`/products/${product.slug}/`} key={product.slug}
-                className="card card--lift" data-reveal
+                className="card card--lift brand-card" data-reveal
                 style={{ textDecoration: "none", display: "flex", flexDirection: "column", gap: 18 }}>
                 <span className="card__icon" aria-hidden="true" style={{ fontSize: 28, fontWeight: 300 }}>{product.letter}</span>
                 <h3 style={{ margin: 0, overflowWrap: "anywhere" }}>{product.brand}</h3>

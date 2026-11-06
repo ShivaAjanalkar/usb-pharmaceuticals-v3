@@ -115,8 +115,7 @@ export default function SiteNav() {
         </div>
       </header>
 
-      {open && (
-        <div className="drawer" id="drawer">
+        <nav className="drawer" id="drawer" aria-label="Mobile navigation" data-open={open} aria-hidden={!open} inert={!open}>
           {NAV.map((item, i) => {
             const current = isCurrent(item.href, pathname);
             return (
@@ -125,14 +124,14 @@ export default function SiteNav() {
                 href={item.href}
                 aria-current={current ? "page" : undefined}
                 onClick={() => setOpen(false)}
+                style={{ animationDelay: `${i * 45}ms` }}
               >
                 {item.label}
                 <span>{String(i + 1).padStart(2, "0")}</span>
               </Link>
             );
           })}
-        </div>
-      )}
+        </nav>
     </>
   );
 }

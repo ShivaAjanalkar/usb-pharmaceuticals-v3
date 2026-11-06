@@ -9,9 +9,8 @@
    own — deep navy in place of that template's forest green, copper in place
    of its olive.
 
-   The visibility contract carries over from both earlier builds: nothing in
-   the motion layer may make content *visible*, only animate what is already
-   visible. Hidden states sit behind `data-armed`, set by JavaScript.
+   Server-rendered content is visible. Entrances use cancellable animations
+   after hydration; no hidden class is needed to reveal content.
    ========================================================================= */
 
 :root {
@@ -198,7 +197,7 @@ a:hover { color: var(--navy); }
 
 /* — nav ———————————————————————————————————————————————————————————————— */
 
-.nav { position: fixed; inset: 0 0 auto 0; z-index: 100; padding: 16px 0; transition: all var(--dur) var(--ease); }
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 100; padding: 16px 0; transition: padding var(--dur) var(--ease), background-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease); }
 .nav[data-scrolled="true"] {
   padding: 8px 0;
   background: rgba(244, 244, 242, 0.86);
@@ -594,20 +593,8 @@ textarea.control { resize: vertical; min-height: 130px; }
 
 /* — motion ————————————————————————————————————————————————————————————— */
 
-[data-armed="true"].reveal,
-[data-armed="true"] [data-reveal] {
-  opacity: 0;
-  transform: translate3d(0, 22px, 0);
-  transition: opacity var(--dur-slow) var(--ease-out), transform var(--dur-slow) var(--ease-out);
-  transition-delay: calc(70ms * var(--i, 0));
-}
-[data-armed="true"][data-shown="true"].reveal,
-[data-armed="true"][data-shown="true"] [data-reveal] { opacity: 1; transform: none; }
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  [data-armed="true"].reveal,
-  [data-armed="true"] [data-reveal] { opacity: 1; transform: none; transition: none; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
 
@@ -638,4 +625,89 @@ textarea.control { resize: vertical; min-height: 130px; }
   .nav__wordmark { width: clamp(140px, 50vw, 160px); height: auto; }
   .nav__actions > .btn { display: none; }
   .media--hero { aspect-ratio: 4 / 3; }
+}
+
+/* Laboratory showcase and motion controls. Content is visible without JavaScript. */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.home-hero { position: relative; isolation: isolate; }
+.home-hero::before { content: ""; position: absolute; z-index: -1; width: min(60vw, 760px); height: 80%; top: 0; right: 0; background: radial-gradient(ellipse, rgba(205,166,101,.12), transparent 68%); pointer-events: none; }
+.hero-heading { letter-spacing: -.025em; font-size: clamp(34px, 4.1vw, 58px); }
+.hero-heading__line { display: block; }
+.hero-heading__line:last-child { color: var(--copper-deep); }
+.promise-panel { position: relative; overflow: hidden; isolation: isolate; }
+.promise-panel > h2, .promise-panel > p { position: relative; z-index: 1; }
+.science-motif { position: absolute; width: 240px; height: 190px; left: 15%; top: 50%; transform: translateY(-50%); color: var(--copper); opacity: .2; pointer-events: none; }
+.science-motif__orbit { transform-origin: 140px 110px; animation: science-orbit 45s linear infinite; animation-play-state: paused; }
+html[data-motion="playing"] .science-motif__orbit { animation-play-state: running; }
+@keyframes science-orbit { to { transform: rotate(360deg); } }
+
+.lab-showcase { position: relative; width: 100%; aspect-ratio: 3 / 2; overflow: hidden; border-radius: var(--r-lg); background: var(--navy); box-shadow: 0 24px 70px -42px rgba(2,45,61,.4); isolation: isolate; }
+.lab-showcase__frames, .lab-showcase__slide { position: absolute; inset: 0; }
+.lab-showcase__slide { opacity: 0; pointer-events: none; transition: opacity 1.1s var(--ease); }
+.lab-showcase__slide[data-active="true"] { opacity: 1; }
+.lab-showcase__slide > img, .lab-showcase__video, .lab-showcase__video video { width: 100%; height: 100%; object-fit: cover; }
+.lab-showcase__slide[data-active="true"] > img { animation: lab-drift 10s ease-out both; animation-play-state: paused; }
+.lab-showcase[data-playing="true"] .lab-showcase__slide[data-active="true"] > img { animation-play-state: running; }
+.lab-showcase__video { border-radius: 0; }
+@keyframes lab-drift { from { transform: scale(1.01); } to { transform: scale(1.075); } }
+.lab-showcase::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, rgba(1,30,41,.88)); pointer-events: none; z-index: 1; }
+.lab-showcase__top { position: absolute; inset: 18px 18px auto; display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+.lab-showcase__top .media__badge { position: static; }
+.lab-showcase__pause { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.9); color: var(--navy); border: 0; cursor: pointer; transition: background-color .25s, transform .25s; }
+.lab-showcase__pause:disabled { cursor: default; opacity: .6; }
+.lab-showcase__bottom { position: absolute; inset: auto 24px 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; z-index: 2; color: white; }
+.lab-showcase__index { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--copper); }
+.lab-showcase__bottom p { margin: 5px 0 0; font-size: clamp(17px, 1.6vw, 24px); line-height: 1.2; font-weight: 300; }
+.lab-showcase__controls { display: flex; align-items: center; gap: 3px; flex: none; }
+.lab-showcase__controls button { display: grid; place-items: center; min-width: 30px; min-height: 36px; padding: 0; border: 0; border-radius: 50%; color: white; background: transparent; cursor: pointer; font-size: 20px; transition: background-color .25s; }
+.lab-showcase__controls button:hover { background: rgba(255,255,255,.14); }
+.lab-showcase__dot::after { content: ""; width: 6px; height: 6px; border-radius: 10px; background: rgba(255,255,255,.45); transition: width .4s var(--ease), background-color .4s; }
+.lab-showcase__dot[aria-current="true"]::after { width: 20px; background: var(--copper); }
+.lab-showcase button:focus-visible { outline-color: var(--copper); }
+
+.reading-progress { position: fixed; inset: 0 0 auto; height: 3px; z-index: 200; pointer-events: none; }
+.reading-progress > div { height: 100%; background: var(--copper); transform: scaleX(0); transform-origin: left; }
+.motion-tools { position: fixed; right: 18px; bottom: 18px; display: flex; gap: 8px; align-items: center; z-index: 90; }
+.motion-tools button { min-height: 40px; padding: 10px 14px; display: inline-flex; gap: 8px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: var(--pill); background: rgba(255,255,255,.95); color: var(--navy); box-shadow: 0 4px 20px rgba(2,45,61,.1); cursor: pointer; font-size: 11px; font-weight: 500; transition: background-color .25s, transform .25s; }
+.motion-tools button:hover { background: var(--mist); }
+.motion-tools button:disabled { cursor: default; }
+.motion-tools .motion-tools__top { width: 40px; padding: 0; }
+.catalogue-grid { list-style: none; margin: 0; padding: 0; }
+.brand-card { position: relative; overflow: hidden; }
+.brand-card::after { content: ""; position: absolute; bottom: 0; left: 24px; right: 24px; height: 2px; border-radius: 2px; background: var(--copper); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease-out); }
+.card__icon { transition: transform .5s var(--ease-out), background-color .5s; }
+.brand-card:focus-visible::after { transform: scaleX(1); }
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 20%, rgba(255,255,255,.22), transparent 80%); transform: translateX(-130%); transition: transform .7s var(--ease); }
+.footer__links a { width: fit-content; background-image: linear-gradient(currentColor,currentColor); background-size: 0 1px; background-position: left bottom; background-repeat: no-repeat; transition: color .3s, background-size .4s var(--ease-out); }
+.footer__links a:hover { background-size: 100% 1px; }
+.srow { position: relative; transition: background-color .4s, padding-inline .4s var(--ease); }
+.drawer { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-14px); transition: opacity .4s var(--ease-out), transform .4s var(--ease-out), visibility 0s .4s; }
+.drawer[data-open="true"] { opacity: 1; visibility: visible; pointer-events: auto; transform: none; transition-delay: 0s; }
+html[data-motion="playing"] .drawer[data-open="true"] a { animation: menu-enter .6s var(--ease-out) backwards; }
+@keyframes menu-enter { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -15px var(--navy); }
+  .btn:hover::after { transform: translateX(130%); }
+  .card--lift:hover { transform: translateY(-7px); box-shadow: 0 22px 48px -25px rgba(2,45,61,.28); }
+  .card--lift:hover .card__icon { transform: translateY(-2px) rotate(-5deg); }
+  .brand-card:hover::after { transform: scaleX(1); }
+  .media > img { transition: transform 1.2s var(--ease-out); }
+  .media:hover > img { transform: scale(1.04); }
+  .srow:hover { background: rgba(205,166,101,.055); padding-inline: 12px; }
+  .lab-showcase__pause:hover { background: var(--copper); transform: scale(1.06); }
+}
+@media (max-width: 720px) {
+  .lab-showcase { aspect-ratio: 4 / 3; }
+  .lab-showcase__bottom { inset: auto 18px 20px; gap: 8px; }
+  .lab-showcase__controls { gap: 0; }
+  .lab-showcase__controls button { min-width: 26px; }
+  .science-motif { left: auto; right: -30px; opacity: .12; }
+  .motion-tools { right: 12px; bottom: 12px; }
+}
+html[data-motion="paused"] { scroll-behavior: auto; }
+html[data-motion="paused"] *, html[data-motion="paused"] *::before, html[data-motion="paused"] *::after { animation-play-state: paused !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
 }
